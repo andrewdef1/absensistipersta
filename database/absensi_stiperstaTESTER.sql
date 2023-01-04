@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2023 at 06:24 PM
+-- Generation Time: Jan 04, 2023 at 06:35 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -40,13 +40,6 @@ CREATE TABLE `attendances` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `attendances`
---
-
-INSERT INTO `attendances` (`id`, `title`, `description`, `start_time`, `batas_start_time`, `end_time`, `batas_end_time`, `code`, `created_at`, `updated_at`) VALUES
-(1, '5 Januari 2023', 'Absensi', '02:00:00', '10:00:00', '15:00:00', '18:00:00', NULL, '2023-01-04 17:15:16', '2023-01-04 17:16:16');
-
 -- --------------------------------------------------------
 
 --
@@ -60,16 +53,6 @@ CREATE TABLE `attendance_position` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `attendance_position`
---
-
-INSERT INTO `attendance_position` (`id`, `attendance_id`, `position_id`, `created_at`, `updated_at`) VALUES
-(5, 1, 3, NULL, NULL),
-(6, 1, 6, NULL, NULL),
-(7, 1, 5, NULL, NULL),
-(8, 1, 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,11 +188,7 @@ INSERT INTO `positions` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Pegawai \"Biasa\"', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
 (2, 'Manager', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
 (3, 'Direktur', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
-(4, 'Operator', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
-(5, 'Pegawai \"Biasa\"', '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(6, 'Manager', '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(7, 'Direktur', '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(8, 'Operator', '2023-01-04 17:10:39', '2023-01-04 17:10:39');
+(4, 'Operator', '2023-01-04 17:08:51', '2023-01-04 17:08:51');
 
 -- --------------------------------------------------------
 
@@ -228,13 +207,6 @@ CREATE TABLE `presences` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `presences`
---
-
-INSERT INTO `presences` (`id`, `user_id`, `attendance_id`, `presence_date`, `presence_enter_time`, `presence_out_time`, `is_permission`, `created_at`, `updated_at`) VALUES
-(1, 20, 1, '2023-01-05', '02:16:23', NULL, 0, '2023-01-04 17:16:23', '2023-01-04 17:16:23');
 
 -- --------------------------------------------------------
 
@@ -256,10 +228,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '2023-01-04 17:08:45', '2023-01-04 17:08:45'),
 (2, 'operator', '2023-01-04 17:08:45', '2023-01-04 17:08:45'),
-(3, 'user', '2023-01-04 17:08:45', '2023-01-04 17:08:45'),
-(4, 'admin', '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(5, 'operator', '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(6, 'user', '2023-01-04 17:10:39', '2023-01-04 17:10:39');
+(3, 'user', '2023-01-04 17:08:45', '2023-01-04 17:08:45');
 
 -- --------------------------------------------------------
 
@@ -288,7 +257,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `position_id`, `role_id`, `remember_token`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 (1, 'Drew (Admin)', 'andrewdefretes@gmail.com', '2023-01-04 17:10:39', '$2y$10$YOnD7.7GNqWoRiGswl2co.ThOekuaj5UaYwRalXZwMM.8jTZ.dTy2', '081326118259', 4, 1, '', NULL, '2023-01-04 17:10:39', '2023-01-04 17:10:39'),
-(20, 'Dr. Yunus P. Paulangan, S.Kel., Msi', 'yunuspaulangan@stipersta.ac.id', NULL, '$2y$10$UrbAvV8Fr/I/P1iEBK/1QOHGfy832YmbaBtkz497WGwvy2LGo39rS', '08555555555555', 3, 3, NULL, NULL, '2023-01-04 17:13:37', '2023-01-04 17:13:37');
+(2, 'Dr. Yunus P. Paulangan, S.Kel., Msi', 'yunuspaulangan@stipersta.ac.id', NULL, '$2y$10$UrbAvV8Fr/I/P1iEBK/1QOHGfy832YmbaBtkz497WGwvy2LGo39rS', '08555555555555', 3, 3, NULL, NULL, '2023-01-04 17:13:37', '2023-01-04 17:13:37');
 
 --
 -- Indexes for dumped tables
@@ -387,13 +356,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `attendance_position`
 --
 ALTER TABLE `attendance_position`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -429,25 +398,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `presences`
 --
 ALTER TABLE `presences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
