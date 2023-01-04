@@ -46,12 +46,6 @@ php artisan serve
 
 -   Clone this repository
 
-```sh
-git clone https://github.com/muhammadpauzi/absensi-app.git
-# make sure you are in the folder
-cd absensi-app
-```
-
 -   Install all packages
 
 ```sh
