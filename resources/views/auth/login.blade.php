@@ -10,7 +10,7 @@
 
     <main class="form-signin w-100 m-auto">
         <form method="POST" action="{{ route('auth.login') }}" id="login-form">
-            <h1 class="h3 mb-3 fw-normal">Silahkan masuk untuk absensi</h1>
+            <div align="center"><h1 class="h3 mb-3 fw-normal"><img src="/img/logostiper.png" width="50px" height="50px">   Absensi LOGIN</h1></div>
 
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInputEmail" name="email"
@@ -31,7 +31,7 @@
             </div>
 
             <button class="w-100 btn btn-primary" type="submit" id="login-form-button">Masuk</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+            <div align="center"><p class="mt-5 mb-3 text-muted">&copy; <a href="https://github.com/andrewdef1" target="_blank">DREW</a> - <?php echo date("Y"); ?></p></div>
         </form>
     </main>
 

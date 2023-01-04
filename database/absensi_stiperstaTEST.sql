@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2023 at 06:35 PM
+-- Generation Time: Jan 04, 2023 at 07:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -185,9 +185,9 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Pegawai \"Biasa\"', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
-(2, 'Manager', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
-(3, 'Direktur', '2023-01-04 17:08:51', '2023-01-04 17:08:51'),
+(1, 'Dosen', '2023-01-04 17:08:51', '2023-01-04 18:05:45'),
+(2, 'Tenaga Kependidikan', '2023-01-04 17:08:51', '2023-01-04 18:06:02'),
+(3, 'Ketua', '2023-01-04 17:08:51', '2023-01-04 18:06:32'),
 (4, 'Operator', '2023-01-04 17:08:51', '2023-01-04 17:08:51');
 
 -- --------------------------------------------------------
@@ -362,7 +362,7 @@ ALTER TABLE `attendances`
 -- AUTO_INCREMENT for table `attendance_position`
 --
 ALTER TABLE `attendance_position`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -404,7 +404,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT for table `presences`
 --
 ALTER TABLE `presences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
