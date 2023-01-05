@@ -49,16 +49,35 @@ class PresenceForm extends Component
         if (!$this->attendance->data->is_end && $this->attendance->data->is_using_qrcode) // sama (harus) dengan view
             return false;
 
-        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
-        $presence = Presence::query()
-            ->where('user_id', auth()->user()->id)
-            ->where('attendance_id', $this->attendance->id)
-            ->where('presence_date', now()->toDateString())
-            ->where('presence_out_time', null)
-            ->first();
+            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+            $presence = Presence::query()
+                ->where('user_id', auth()->user()->id)
+                ->where('attendance_id', $this->attendance->id)
+                ->where('presence_date', now()->toDateString())
+                ->where('presence_out_time', null)
+                ->first();
+
+            if (!$presence && !$this->attendance->data->is_start && !$this->attendance->data->is_using_qrcode) { // sama (harus) dengan view
+
+                Presence::create([
+                    "user_id" => auth()->user()->id,
+                    "attendance_id" => $this->attendance->id,
+                    "presence_date" => now()->toDateString(),
+                    "presence_enter_time" => null,
+                    "presence_out_time" => now()->toTimeString(),
+                    "latitude_masuk" => null,
+                    "longitude_masuk" => null,
+                    "latitude_keluar" => $checkLocation->lat,
+                    "longitude_keluar" => $checkLocation->lon
+                ]);
+                $this->data['is_not_out_yet'] = false;
+                 return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Kehadiran atas nama '" . auth()->user()->name . "' berhasil dikirim."]);
+            }
 
         if (!$presence) // hanya untuk sekedar keamanan (kemungkinan)
             return $this->dispatchBrowserEvent('showToast', ['success' => false, 'message' => "Terjadi masalah pada saat melakukan absensi."]);
+
+
 
 
     // untuk refresh if statement
@@ -67,7 +86,8 @@ class PresenceForm extends Component
     $presence->update(['latitude_keluar' => $checkLocation->lat]);
     $presence->update(['longitude_keluar' => $checkLocation->lon]);
     return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."]);
-}
+
+    }
 
 
     public function render()
