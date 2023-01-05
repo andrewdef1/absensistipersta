@@ -39,6 +39,7 @@ class HomeController extends Controller
         //     ->isEmpty();
 
         $isHasEnterToday = $presences
+            // ->where('presence_enter_time', now()->toDateString())
             ->where('presence_date', now()->toDateString())
             ->isNotEmpty();
 

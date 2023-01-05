@@ -25,11 +25,7 @@
 
     {{-- jika absen pulang sudah dimulai, dan karyawan sudah absen masuk dan belum absen pulang --}}
     @if ($attendance->data->is_end && $data['is_has_enter_today'] && $data['is_not_out_yet'])
-    {{-- @if ($attendance->data->is_end && $data['is_has_enter_today'] && $data['is_not_out_yet']) --}}
     <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendOutPresence"
-        wire:loading.attr="disabled" wire:target="sendOutPresence">Pulang</button>
-    @elseif ($attendance->data->is_end && !$data['is_has_enter_today'] && $data['is_not_out_yet'])
-        <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendOutPresence"
         wire:loading.attr="disabled" wire:target="sendOutPresence">Pulang</button>
     @endif
 

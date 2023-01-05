@@ -39,7 +39,7 @@ class PresenceForm extends Component
             $this->data['is_has_enter_today'] = true;
             $this->data['is_not_out_yet'] = true;
 
-            return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Kehadiran atas nama '" . auth()->user()->name . "' berhasil dikirim."]);
+            return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi masuk."]);
         }
     }
 
@@ -71,7 +71,8 @@ class PresenceForm extends Component
                     "longitude_keluar" => $checkLocation->lon
                 ]);
                 $this->data['is_not_out_yet'] = false;
-                 return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Kehadiran atas nama '" . auth()->user()->name . "' berhasil dikirim."]);
+                $this->data['is_has_enter_today'] = false;
+                return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."]);
             }
 
         if (!$presence) // hanya untuk sekedar keamanan (kemungkinan)
