@@ -16,10 +16,12 @@ class PresenceController extends Controller
     {
         $attendances = Attendance::all()->sortByDesc('data.is_end')->sortByDesc('data.is_start');
 
-        return view('presences.index', [
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+
+        return view('presences.index',compact('checkLocation'), [
             "title" => "Daftar Absensi Dengan Kehadiran",
             "attendances" => $attendances
-        ]);
+        ], );
     }
 
     public function show(Attendance $attendance)

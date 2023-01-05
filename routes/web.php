@@ -73,3 +73,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'authenticate']);
 });
+
+// Route::get('/ip', function() {
+//     $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+//     return $checkLocation->toArray();
+//     dd($checkLocation);
+// });
