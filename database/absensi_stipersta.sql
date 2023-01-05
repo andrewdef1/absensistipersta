@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2023 at 07:09 PM
+-- Generation Time: Jan 05, 2023 at 12:30 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -40,6 +40,13 @@ CREATE TABLE `attendances` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `attendances`
+--
+
+INSERT INTO `attendances` (`id`, `title`, `description`, `start_time`, `batas_start_time`, `end_time`, `batas_end_time`, `code`, `created_at`, `updated_at`) VALUES
+(1, 'Januari 2023', 'Presensi Bulan Januari 2023', '07:00:00', '19:00:00', '20:00:00', '23:30:00', NULL, '2023-01-05 06:41:40', '2023-01-05 11:30:13');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +60,16 @@ CREATE TABLE `attendance_position` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attendance_position`
+--
+
+INSERT INTO `attendance_position` (`id`, `attendance_id`, `position_id`, `created_at`, `updated_at`) VALUES
+(5, 1, 3, NULL, NULL),
+(6, 1, 2, NULL, NULL),
+(7, 1, 4, NULL, NULL),
+(8, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -203,10 +220,21 @@ CREATE TABLE `presences` (
   `presence_date` date NOT NULL,
   `presence_enter_time` varchar(255) DEFAULT NULL,
   `presence_out_time` time DEFAULT NULL,
+  `latitude_masuk` varchar(255) DEFAULT NULL,
+  `longitude_masuk` varchar(255) DEFAULT NULL,
+  `latitude_keluar` varchar(255) DEFAULT NULL,
+  `longitude_keluar` varchar(255) DEFAULT NULL,
   `is_permission` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `presences`
+--
+
+INSERT INTO `presences` (`id`, `user_id`, `attendance_id`, `presence_date`, `presence_enter_time`, `presence_out_time`, `latitude_masuk`, `longitude_masuk`, `latitude_keluar`, `longitude_keluar`, `is_permission`, `created_at`, `updated_at`) VALUES
+(38, 2, 1, '2023-01-05', '20:24:32', '20:30:18', '-2.5375', '140.7193', '-2.5375', '140.7193', 0, '2023-01-05 11:24:32', '2023-01-05 11:30:18');
 
 -- --------------------------------------------------------
 
@@ -356,13 +384,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `attendance_position`
 --
 ALTER TABLE `attendance_position`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -404,7 +432,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT for table `presences`
 --
 ALTER TABLE `presences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `roles`
