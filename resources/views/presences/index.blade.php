@@ -20,8 +20,8 @@
     </div>
 </div>
 
-<div class="container">
-    <h1>How to Get Current User Location with Laravel - ItSolutionStuff.com</h1>
+{{-- <div class="container">
+    <h1>How to Get Current User Location with Laravel</h1>
     <div class="card">
         <div class="card-body">
             @if($checkLocation)
@@ -34,10 +34,10 @@
                 <h4>Zip Code: {{ $checkLocation->postal_code }}</h4>
                 <h4>Latitude: {{ $checkLocation->lat }}</h4>
                 <h4>Longitude: {{ $checkLocation->lon }}</h4>
-                <h4>Longitude: {{ $checkLocation->continent }}</h4>
-                <h4>Longitude: {{ $checkLocation->timezone }}</h4>
+                <h4>Time Zone: {{ $checkLocation->timezone }}</h4>
             @endif
         </div>
     </div>
-</div>
+</div> --}}
+
 @endsection

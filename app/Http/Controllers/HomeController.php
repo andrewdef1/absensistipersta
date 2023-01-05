@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public $data;
     public function index()
     {
         $attendances = Attendance::query()
@@ -33,6 +34,10 @@ class HomeController extends Controller
             ->where('user_id', auth()->user()->id)
             ->get();
 
+        // $isNotEnterToday = $presences
+        //     ->where('presence_date', null)
+        //     ->isEmpty();
+
         $isHasEnterToday = $presences
             ->where('presence_date', now()->toDateString())
             ->isNotEmpty();
@@ -45,6 +50,7 @@ class HomeController extends Controller
 
         $data = [
             'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
+            // 'is_not_enter_today' => $presences->where('presence_enter_time', null)->isEmpty(), // belum absen masuk
             'is_not_out_yet' => $presences->where('presence_out_time', null)->isNotEmpty(), // belum absen pulang
             'is_there_permission' => (bool) $isTherePermission,
             'is_permission_accepted' => $isTherePermission?->is_accepted ?? false
@@ -92,6 +98,7 @@ class HomeController extends Controller
     {
         $code = request('code');
         $attendance = Attendance::query()->where('code', $code)->first();
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
         if ($attendance && $attendance->data->is_start && $attendance->data->is_using_qrcode) { // sama (harus) dengan view
             // fix: user bisa absensi dengan tanggal yang sama, cek apakah user id attendance id dan presence date sudah ada
@@ -100,7 +107,11 @@ class HomeController extends Controller
                 "attendance_id" => $attendance->id,
                 "presence_date" => now()->toDateString(),
                 "presence_enter_time" => now()->toTimeString(),
-                "presence_out_time" => null
+                "presence_out_time" => null,
+                "latitude_masuk" => $checkLocation->lat,
+                "longitude_masuk" => $checkLocation->lon,
+                "latitude_keluar" => null,
+                "longitude_keluar" => null
             ]);
 
             return response()->json([
@@ -113,12 +124,14 @@ class HomeController extends Controller
             "success" => false,
             "message" => "Terjadi masalah pada saat melakukan absensi."
         ], 400);
+
     }
 
     public function sendOutPresenceUsingQRCode()
     {
         $code = request('code');
         $attendance = Attendance::query()->where('code', $code)->first();
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
         if (!$attendance)
             return response()->json([
@@ -145,7 +158,10 @@ class HomeController extends Controller
 
         // untuk refresh if statement
         $this->data['is_not_out_yet'] = false;
+        // $this->data['is_not_enter_today'] = true;
         $presence->update(['presence_out_time' => now()->toTimeString()]);
+        $presence->update(['latitude_keluar' => $checkLocation->lat]);
+        $presence->update(['longitude_keluar' => $checkLocation->lon]);
 
         return response()->json([
             "success" => true,

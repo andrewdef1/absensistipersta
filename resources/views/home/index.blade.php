@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm mb-2">
                 <div class="card-header">
-                    Daftar Absensi Hari Ini
+                    Daftar Absensi
                 </div>
                 <div class="card-body">
                     <ul class="list-group">

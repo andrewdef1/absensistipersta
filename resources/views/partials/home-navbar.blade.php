@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark py-3">
     <div class="container">
-        <a class="navbar-brand bg-transparent fw-bold" href="{{ route('home.index') }}">Absensi STIPER STA</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 py-3 px-3 fs-6" href=""><img src="/img/logostiper.png" width="30px" height="30px">  Absensi STIPER STA</a>
         <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
             aria-label="Toggle navigation">

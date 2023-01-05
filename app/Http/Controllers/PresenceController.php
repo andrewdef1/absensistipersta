@@ -16,9 +16,8 @@ class PresenceController extends Controller
     {
         $attendances = Attendance::all()->sortByDesc('data.is_end')->sortByDesc('data.is_start');
 
-        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
-        return view('presences.index',compact('checkLocation'), [
+        return view('presences.index', [
             "title" => "Daftar Absensi Dengan Kehadiran",
             "attendances" => $attendances
         ], );
@@ -126,6 +125,7 @@ class PresenceController extends Controller
         ]);
 
         $user = User::findOrFail($validated['user_id']);
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
         $presence = Presence::query()
             ->where('attendance_id', $attendance->id)
@@ -142,7 +142,11 @@ class PresenceController extends Controller
             "user_id" => $user->id,
             "presence_date" => $validated['presence_date'],
             "presence_enter_time" => now()->toTimeString(),
-            "presence_out_time" => now()->toTimeString()
+            "presence_out_time" => now()->toTimeString(),
+            "latitude_masuk" => $checkLocation->lat,
+            "longitude_masuk" => $checkLocation->lon,
+            "latitude_keluar" => $checkLocation->lat,
+            "longitude_keluar" => $checkLocation->lon
         ]);
 
         return back()
@@ -157,6 +161,7 @@ class PresenceController extends Controller
         ]);
 
         $user = User::findOrFail($validated['user_id']);
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
         $permission = Permission::query()
             ->where('attendance_id', $attendance->id)
@@ -180,6 +185,10 @@ class PresenceController extends Controller
             "presence_date" => $validated['permission_date'],
             "presence_enter_time" => now()->toTimeString(),
             "presence_out_time" => now()->toTimeString(),
+            "latitude_masuk" => $checkLocation->lat,
+            "longitude_masuk" => $checkLocation->lon,
+            "latitude_keluar" => $checkLocation->lat,
+            "longitude_keluar" => $checkLocation->lon,
             'is_permission' => true
         ]);
 
