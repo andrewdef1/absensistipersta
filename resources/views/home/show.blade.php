@@ -28,7 +28,7 @@
                 @endif
         </div>
         <div class="col-md-6">
-            <h5 class="mb-3">Histori 30 Hari Terakhir</h5>
+            <h5 class="mb-3">Histori Pada Bulan ini</h5>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
