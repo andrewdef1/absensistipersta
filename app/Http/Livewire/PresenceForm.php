@@ -41,6 +41,27 @@ class PresenceForm extends Component
 
             return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi masuk."]);
         }
+
+        if (now() > $this->attendance->data->batas_start_time && !$this->attendance->data->is_using_qrcode)  {
+            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+            Presence::create([
+                "user_id" => auth()->user()->id,
+                "attendance_id" => $this->attendance->id,
+                "presence_date" => now()->toDateString(),
+                "presence_enter_time" => 'Anda Terlambat',
+                "presence_out_time" => null,
+                "latitude_masuk" => $checkLocation->lat,
+                "longitude_masuk" => $checkLocation->lon,
+                "latitude_keluar" => null,
+                "longitude_keluar" => null
+            ]);
+
+            // untuk refresh if statement
+            $this->data['is_has_enter_today'] = true;
+            $this->data['is_not_out_yet'] = true;
+
+            return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' terlambat melakukan absensi masuk."]);
+        }
     }
 
     public function sendOutPresence()

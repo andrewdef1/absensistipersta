@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $isHasEnterToday = $presences
             // ->where('presence_enter_time', now()->toDateString())
-            ->where('presence_date', now()->toDateString())
+            ->where('presence_date', now()->toDateString()) //default
             ->isNotEmpty();
 
         $isTherePermission = Permission::query()
