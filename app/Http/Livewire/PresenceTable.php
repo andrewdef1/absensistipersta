@@ -96,6 +96,10 @@ final class PresenceTable extends PowerGridComponent
             ->addColumn("presence_date")
             ->addColumn("presence_enter_time")
             ->addColumn("presence_out_time", fn (Presence $model) => $model->presence_out_time ?? '<span class="badge text-bg-danger">Belum Absensi Pulang</span>')
+            ->addColumn("latitude_masuk")
+            ->addColumn("longitude_masuk")
+            ->addColumn("latitude_keluar", fn (Presence $model) => $model->latitude_keluar ?? '-')
+            ->addColumn("longitude_keluar", fn (Presence $model) => $model->longitude_keluar ?? '-')
             ->addColumn("is_permission", fn (Presence $model) => $model->is_permission ?
                 '<span class="badge text-bg-warning">Izin</span>' : '<span class="badge text-bg-success">Hadir</span>')
             ->addColumn('created_at')
@@ -144,6 +148,16 @@ final class PresenceTable extends PowerGridComponent
                 // ->makeInputRange('presence_out_time') // ini juga
                 ->makeInputText('presence_out_time')
                 ->sortable(),
+
+            Column::make('Lat Masuk', 'latitude_masuk')
+                ,
+            Column::make('Lon Masuk', 'longitude_masuk')
+                ,
+
+            Column::make('Lat Pulang', 'latitude_keluar')
+                ,
+            Column::make('Lon Pulang', 'longitude_keluar')
+                ,
 
             Column::make('Status', 'is_permission')
                 ->sortable(),
