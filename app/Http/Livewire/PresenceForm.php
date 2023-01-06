@@ -15,6 +15,30 @@ class PresenceForm extends Component
     public function mount(Attendance $attendance)
     {
         $this->attendance = $attendance;
+
+        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        $presence = Presence::query()
+        ->where('user_id', auth()->user()->id)
+        ->where('attendance_id', $this->attendance->id)
+        ->where('presence_date', now()->toDateString())
+        ->where('presence_out_time', null)
+        ->first();
+
+          if ($presence && !$this->attendance->data->is_end && !$this->attendance->data->is_start && !$this->attendance->data->is_using_qrcode) { // sama (harus) dengan view
+
+            $presence = Presence::query()
+            ->where('user_id', auth()->user()->id)
+            ->where('attendance_id', $this->attendance->id)
+            ->where('presence_date', now()->toDateString())
+            ->where('presence_out_time', null)
+            ->first();
+
+            $this->data['is_not_out_yet'] = false;
+            $presence->update(['presence_out_time' => now()->toTimeString()]);
+            $presence->update(['latitude_keluar' => $checkLocation->lat]);
+            $presence->update(['longitude_keluar' => $checkLocation->lon]);
+            return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' terlambat melakukan absensi pulang."]);
+        }
     }
 
     // NOTED: setiap method send presence agar lebih aman seharusnya menggunakan if statement seperti diviewnya
