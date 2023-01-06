@@ -6,6 +6,15 @@
     </div>
     @else
 
+
+        {{-- jika absen pulang sudah dimulai, dan karyawan belum absen masuk dan belum absen pulang --}}
+        @if ($attendance->data->is_end && !$data['is_has_enter_today'])
+        <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendLateEnterPresence"
+            wire:loading.attr="disabled" wire:target="sendLateEnterPresence">Masuk (Hanya yang lupa absen masuk!!!)</button>
+        @endif
+<br>
+
+
     {{-- jika tidak menggunakan qrcode (button) dan karyawan saat ini tidak menekan tombol izin --}}
     @if (!$attendance->data->is_using_qrcode && !$data['is_there_permission'])
 
