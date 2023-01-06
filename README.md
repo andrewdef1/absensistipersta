@@ -1,14 +1,5 @@
 # **Absensi STIPER STA JAYAPURA**
 
-Features
-
--   CRUD Positions (CRUD Jabatan/Posisi)
--   CRUD Users (Admin, Operator and Users (Employees))
--   CRUD Holidays (CRUD Hari Libur)
--   CRUD Attendances (Can have multiple attendances and can using only button or presence using QRCode)
--   Using Datatables (Powergrid livewire)
--   Can Export to Excel and CSV
--   and more...
 
 # install semua package
 composer install
