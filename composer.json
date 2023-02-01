@@ -12,6 +12,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "^3.1",
+        "phpoffice/phpspreadsheet": "^1.27",
         "power-components/livewire-powergrid": "^3.1",
         "simplesoftwareio/simple-qrcode": "~4",
         "torann/geoip": "^3.0"

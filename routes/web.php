@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         // holidays (hari libur)
         Route::resource('/holidays', HolidayController::class)->only(['index', 'create']);
         Route::get('/holidays/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
+        Route::post('/holidays/importholiday', [HolidayController::class, 'importHoliday'])->name('holidays.import');
         // attendances (absensi)
         Route::resource('/attendances', AttendanceController::class)->only(['index', 'create']);
         Route::get('/attendances/edit', [AttendanceController::class, 'edit'])->name('attendances.edit');
