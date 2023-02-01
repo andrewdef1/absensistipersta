@@ -18,6 +18,9 @@ class AttendanceEditForm extends AttendanceAbstract
         $this->attendance['end_time'] = substr($this->attendance['end_time'], 0, -3);
         $this->attendance['batas_end_time'] = substr($this->attendance['batas_end_time'], 0, -3);
 
+        $this->attendance['tanggal_awal'] = $this->attendance['tanggal_awal'];
+        $this->attendance['tanggal_akhir'] = $this->attendance['tanggal_akhir'];
+
         $this->initialCode = $this->attendance['code']; // ini untuk pengecekan/mengatasi update code
         $this->attendance['code'] = $this->initialCode ? true : false; // untuk kondisi apakah input code checked
 

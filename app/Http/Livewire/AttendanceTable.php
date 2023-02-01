@@ -130,6 +130,8 @@ final class AttendanceTable extends PowerGridComponent
             ->addColumn('description')
             ->addColumn('start_time', fn (Attendance $model) => substr($model->start_time, 0, -3) . "-" . substr($model->batas_start_time, 0, -3))
             ->addColumn('end_time', fn (Attendance $model) => substr($model->end_time, 0, -3) . "-" . substr($model->batas_end_time, 0, -3))
+            ->addColumn('tanggal_awal', fn (Attendance $model) => Carbon::parse($model->tanggal_awal)->format('d-m-Y'))
+            ->addColumn('tanggal_akhir', fn (Attendance $model) => Carbon::parse($model->tanggal_akhir)->format('d-m-Y'))
             // ->addColumn('batas_start_time')
             // ->addColumn('end_time')
             // ->addColumn('batas_end_time')
@@ -173,6 +175,16 @@ final class AttendanceTable extends PowerGridComponent
             Column::make('Waktu Absen Keluar', 'end_time', 'end_time')
                 ->searchable()
                 ->makeInputText('end_time')
+                ->sortable(),
+
+                Column::make('Tanggal Mulai', 'tanggal_awal', 'tanggal_awal')
+                ->searchable()
+                ->makeInputText('tanggal_awal')
+                ->sortable(),
+
+                Column::make('Tanggal Berakhir', 'tanggal_akhir', 'tanggal_akhir')
+                ->searchable()
+                ->makeInputText('tanggal_akhir')
                 ->sortable(),
 
             // Column::make('Batas Akhir Absen Masuk', 'batas_start_time', 'batas_start_time')

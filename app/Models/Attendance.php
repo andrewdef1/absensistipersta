@@ -22,6 +22,8 @@ class Attendance extends Model
         'batas_start_time',
         'end_time',
         'batas_end_time',
+        'tanggal_awal',
+        'tanggal_akhir',
         'code'
     ];
 
@@ -32,11 +34,15 @@ class Attendance extends Model
         return Attribute::make(
             get: function ($value) {
                 $now = now();
+                $now_tgl = now();
                 $startTime = Carbon::parse($this->start_time);
                 $batasStartTime = Carbon::parse($this->batas_start_time);
 
                 $endTime = Carbon::parse($this->end_time);
                 $batasEndTime = Carbon::parse($this->batas_end_time);
+
+                $tanggalAwal = Carbon::parse($this->tanggal_awal);
+                $tanggalAkhir = Carbon::parse($this->tanggal_akhir);
 
                 $isHolidayToday = Holiday::query()
                     ->where('holiday_date', now()->toDateString())
@@ -47,9 +53,13 @@ class Attendance extends Model
                     "batas_start_time" => $this->batas_start_time,
                     "end_time" => $this->end_time,
                     "batas_end_time" => $this->batas_end_time,
+                    "tanggal_awal" => $this->tanggal_awal,
+                    "tanggal_akhir" => $this->tanggal_akhir,
                     "now" => $now->format("H:i:s"),
+                    "now_tgl" => $now->format("dd-mm-yyyy"),
                     "is_start" => $startTime <= $now && $batasStartTime >= $now,
                     "is_end" => $endTime <= $now && $batasEndTime >= $now,
+                    "in_date_range" => $tanggalAwal <= $now_tgl && $tanggalAkhir >= $now_tgl,
                     'is_using_qrcode' => $this->code ? true : false,
                     'is_holiday_today' => $isHolidayToday->isNotEmpty()
                 ];

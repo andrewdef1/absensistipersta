@@ -48,6 +48,25 @@
                 <small class="text-muted d-block mt-1">Masukan dengan format 24:00.</small>
             </div>
 
+             {{-- Tanggal Range --}}
+             <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <x-form-label id="tanggal_awal" label='Tanggal Awal Absen' />
+                        <x-form-input type="date" id="tanggal_awal" name="tanggal_awal"
+                            wire:model.defer="attendance.tanggal_awal" placeholder="15:00" />
+                        <x-form-error key="attendance.tanggal_awal" />
+                    </div>
+                    <div class="col-md-6">
+                        <x-form-label id="tanggal_akhir" label='Tanggal Akhir Absen' />
+                        <x-form-input type="date" id="tanggal_akhir" name="tanggal_akhir"
+                            wire:model.defer="attendance.tanggal_akhir" />
+                        <x-form-error key="attendance.tanggal_akhir" />
+                    </div>
+                </div>
+                <small class="text-muted d-block mt-1">Masukan Tanggal.</small>
+            </div>
+
             <div class="mb-3">
                 <x-form-label id="positions" label='Posisi Karyawaan' />
                 <div class="row ms-1">
