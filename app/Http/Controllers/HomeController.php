@@ -17,9 +17,11 @@ class HomeController extends Controller
         $attendances = Attendance::query()
             // ->with('positions')
             ->forCurrentUser(auth()->user()->position_id)
+            ->whereYear('created_at', '=', date("Y"))
             ->get()
             ->sortByDesc('data.is_end')
-            ->sortByDesc('data.is_start');
+            ->sortByDesc('data.is_start')
+            ->sortBy('tanggal_awal');
 
         return view('home.index', [
             "title" => "Beranda",
