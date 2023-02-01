@@ -147,20 +147,20 @@ return [
     |
     */
 
-    'default_location' => [
-        'ip' => '127.0.0.1',
-        'iso_code' => 'ID',
-        'country' => 'Indonesia',
-        'city' => 'Jayapura',
-        'state' => 'PA',
-        'state_name' => 'Papua',
-        'postal_code' => '06510',
-        'lat' => -2.5375,
-        'lon' => 140.7193,
-        'timezone' => 'Asia/Jayapura',
-        'continent' => 'SEA',
-        'default' => true,
-        'currency' => 'IDR',
-    ],
+    // 'default_location' => [
+    //     'ip' => '127.0.0.1',
+    //     'iso_code' => 'ID',
+    //     'country' => 'Indonesia',
+    //     'city' => 'Jayapura',
+    //     'state' => 'PA',
+    //     'state_name' => 'Papua',
+    //     'postal_code' => '06510',
+    //     'lat' => -2.5375,
+    //     'lon' => 140.7193,
+    //     'timezone' => 'Asia/Jayapura',
+    //     'continent' => 'SEA',
+    //     'default' => true,
+    //     'currency' => 'IDR',
+    // ],
 
 ];
