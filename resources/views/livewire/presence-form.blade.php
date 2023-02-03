@@ -1,4 +1,15 @@
+<style>
+    #map { height: 180px; }
+</style>
+
 <div>
+    {{-- get lokasi input --}}
+    <input type="text" id="lokasi">
+    <div class="row mt-2">
+        <div class="col">
+            <div id="map"></div>
+        </div>
+    </div>
 
     @if ($holiday)
     <div class="alert alert-success">
@@ -7,10 +18,12 @@
     @else
 
 
+
         {{-- jika absen pulang sudah dimulai, dan karyawan belum absen masuk dan belum absen pulang --}}
         @if ($attendance->data->is_end && !$data['is_has_enter_today'] && $attendance->data->in_date_range)
         <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendLateEnterPresence"
             wire:loading.attr="disabled" wire:target="sendLateEnterPresence">Masuk (Hanya yang lupa absen masuk!!!)</button>
+
         @endif
 <br>
 
@@ -68,3 +81,35 @@
     @endif
 
 </div>
+
+@push('script')
+<script>
+    // script lokasi
+var lokasi = document.getElementById('lokasi');
+if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+}
+
+function successCallback(position){
+    lokasi.value = position.coords.latitude + "," + position.coords.longitude;
+    var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 17);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+
+var circle = L.circle([position.coords.latitude, position.coords.longitude], {
+    color: 'grey',
+    fillColor: 'cyan',
+    fillOpacity: 0.5,
+    radius: 69
+}).addTo(map);
+}
+
+function errorCallback() {
+
+}
+</script>
+@endpush
