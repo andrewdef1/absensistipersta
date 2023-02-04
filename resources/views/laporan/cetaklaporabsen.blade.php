@@ -81,23 +81,23 @@
                 {{-- potongan logic --}}
 
                 {{-- MASUK --}}
-                @if ($absen->presence_enter_time <= strtotime('09:00:59'))
+                @if ($absen->presence_enter_time <= ('09:00:59'))
                 @php
               $TL=0;
               @endphp
-                @elseif ($absen->presence_enter_time >= strtotime('09:01:00') AND $absen->presence_enter_time <= strtotime('09:30:59'))
+                @elseif ($absen->presence_enter_time >= ('09:01:00') AND $absen->presence_enter_time <= ('09:30:59'))
                 @php
               $TL=0.5;
               @endphp
-                @elseif ($absen->presence_enter_time >= strtotime('09:31:00') AND $absen->presence_enter_time <= strtotime('10:00:59'))
+                @elseif ($absen->presence_enter_time >= ('09:31:00') AND $absen->presence_enter_time <= ('10:00:59'))
                 @php
               $TL=1;
               @endphp
-                @elseif ($absen->presence_enter_time >= strtotime('10:01:00') AND $absen->presence_enter_time <= strtotime('10:30:59'))
+                @elseif ($absen->presence_enter_time >= ('10:01:00') AND $absen->presence_enter_time <= ('10:30:59'))
                 @php
               $TL=1.5;
               @endphp
-                @elseif ($absen->presence_enter_time >= strtotime('10:31:00'))
+                @elseif ($absen->presence_enter_time >= ('10:31:00'))
                 @php
               $TL=2;
               @endphp
@@ -108,19 +108,19 @@
                 @endif
 
                 {{-- PULANG --}}
-                @if ($absen->presence_out_time >= strtotime('15:00:00'))
+                @if ($absen->presence_out_time >= ('15:00:00'))
                 @php
               $CP=0;
               @endphp
-                @elseif ($absen->presence_out_time >= strtotime('13:30:00') AND $absen->presence_out_time <= strtotime('13:59:59'))
+                @elseif ($absen->presence_out_time >= ('13:30:00') AND $absen->presence_out_time <= ('13:59:59'))
                 @php
               $CP=1.5;
               @endphp
-                @elseif ($absen->presence_out_time >= strtotime('14:00:00') AND $absen->presence_out_time <= strtotime('14:29:59'))
+                @elseif ($absen->presence_out_time >= ('14:00:00') AND $absen->presence_out_time <= ('14:29:59'))
                 @php
               $CP=1;
               @endphp
-                @elseif ($absen->presence_out_time >= strtotime('14:30:00') AND $absen->presence_out_time <= strtotime('14:59:59'))
+                @elseif ($absen->presence_out_time >= ('14:30:00') AND $absen->presence_out_time <= ('14:59:59'))
                 @php
               $CP=0.5;
               @endphp
@@ -144,7 +144,7 @@
                 <td>{{$absen->lokasi_masuk}}</td>
                 <td>{{$absen->lokasi_pulang}}</td>
                 <td>
-                    {{ dd($TL) }}
+                    {{ ($TL + $CP) }}
                 </td>
 
 
