@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendances/edit', [AttendanceController::class, 'edit'])->name('attendances.edit');
 
         // presences (kehadiran)
+        Route::get('/laporanabsen/laporan', 'App\Http\Controllers\PresenceController@cetakAbsens')->name('laporan.cetaklapabsen');
+        Route::get('/laporanabsen/laporan/cetak/{tglawal}/{tglakhir}', 'App\Http\Controllers\PresenceController@cetakAbsen')->name('laporan.cetaklaporabsen');
         Route::resource('/presences', PresenceController::class)->only(['index']);
         Route::get('/presences/qrcode', [PresenceController::class, 'showQrcode'])->name('presences.qrcode');
         Route::get('/presences/qrcode/download-pdf', [PresenceController::class, 'downloadQrCodePDF'])->name('presences.qrcode.download-pdf');
@@ -51,6 +53,7 @@ Route::middleware('auth')->group(function () {
         // present (url untuk menambahkan/mengubah user yang tidak hadir menjadi hadir)
         Route::post('/presences/{attendance}/present', [PresenceController::class, 'presentUser'])->name('presences.present');
         Route::post('/presences/{attendance}/acceptPermission', [PresenceController::class, 'acceptPermission'])->name('presences.acceptPermission');
+
         // employees permissions
 
         Route::get('/presences/{attendance}/permissions', [PresenceController::class, 'permissions'])->name('presences.permissions');

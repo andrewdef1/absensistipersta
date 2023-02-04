@@ -227,4 +227,19 @@ class PresenceController extends Controller
         }
         return $notPresentData;
     }
+
+    public function cetakAbsens() {
+        return view('laporan.cetaklapabsen', [
+            "title" => "Absensi"
+        ]);
+    }
+
+      public function cetakAbsen($tglawal, $tglakhir) {
+
+        $lapabsen = \App\Models\Presence::select('presences.*', 'attendances.title','users.name')
+        ->leftJoin('attendances', 'presences.attendance_id', '=', 'attendances.id')
+        ->leftJoin('users', 'presences.user_id', '=', 'users.id')
+         ->whereBetween('presences.presence_date',[$tglawal, $tglakhir])->get();
+         return view('laporan.cetaklaporabsen', compact('lapabsen'));
+    }
 }

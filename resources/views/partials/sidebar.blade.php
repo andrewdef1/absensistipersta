@@ -44,6 +44,13 @@
                     Data Kehadiran
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('laporan.*') ? 'active' : '' }}"
+                    href="{{ route('laporan.cetaklapabsen') }}" target="_blank">
+                    <span data-feather="clipboard" class="align-text-bottom"></span>
+                    Laporan
+                </a>
+            </li>
             @endif
         </ul>
 

@@ -10,7 +10,7 @@ class Presence extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-
+    protected $dates = ['presence_date'];
 
     public function user()
     {
