@@ -24,7 +24,7 @@ class Attendance extends Model
         'batas_end_time',
         'tanggal_awal',
         'tanggal_akhir',
-        'code'
+         'code'
     ];
 
     protected $appends = ['data'];

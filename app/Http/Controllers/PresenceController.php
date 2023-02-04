@@ -125,7 +125,7 @@ class PresenceController extends Controller
         ]);
 
         $user = User::findOrFail($validated['user_id']);
-        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+        // $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
 
         $presence = Presence::query()
             ->where('attendance_id', $attendance->id)
@@ -143,10 +143,12 @@ class PresenceController extends Controller
             "presence_date" => $validated['presence_date'],
             "presence_enter_time" => now()->toTimeString(),
             "presence_out_time" => now()->toTimeString(),
-            "latitude_masuk" => $checkLocation->lat,
-            "longitude_masuk" => $checkLocation->lon,
-            "latitude_keluar" => $checkLocation->lat,
-            "longitude_keluar" => $checkLocation->lon
+            "lokasi_masuk" => $request->lokasi,
+            "lokasi_pulang" => $request->lokasi
+            // "latitude_masuk" => $checkLocation->lat,
+            // "longitude_masuk" => $checkLocation->lon,
+            // "latitude_keluar" => $checkLocation->lat,
+            // "longitude_keluar" => $checkLocation->lon
         ]);
 
         return back()
@@ -185,10 +187,11 @@ class PresenceController extends Controller
             "presence_date" => $validated['permission_date'],
             "presence_enter_time" => now()->toTimeString(),
             "presence_out_time" => now()->toTimeString(),
-            "latitude_masuk" => $checkLocation->lat,
-            "longitude_masuk" => $checkLocation->lon,
-            "latitude_keluar" => $checkLocation->lat,
-            "longitude_keluar" => $checkLocation->lon,
+            "lokasi_masuk" => $request->lokasi,
+            "lokasi_pulang" => $request->lokasi,
+            // "longitude_masuk" => $checkLocation->lon,
+            // "latitude_keluar" => $checkLocation->lat,
+            // "longitude_keluar" => $checkLocation->lon,
             'is_permission' => true
         ]);
 

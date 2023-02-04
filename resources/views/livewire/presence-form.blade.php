@@ -1,15 +1,15 @@
-<style>
-    #map { height: 180px; }
-</style>
 
 <div>
     {{-- get lokasi input --}}
-    <input type="text" id="lokasi">
+    <input type="text" wire:model="lokasi" id="lokasi" name="lokasi">
+    {{-- <input type="hidden" id="lokasi" name="lokasi" wire:model="lokasi_pulang"> --}}
     <div class="row mt-2">
         <div class="col">
             <div id="map"></div>
         </div>
     </div>
+{{ $lokasi }}
+
 
     @if ($holiday)
     <div class="alert alert-success">
@@ -33,7 +33,7 @@
 
     {{-- jika belum absen dan absen masuk sudah dimulai --}}
     @if ($attendance->data->is_start && !$data['is_has_enter_today'] && $attendance->data->in_date_range)
-    <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:click="sendEnterPresence"
+    <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:click.prevent="sendEnterPresence"
         wire:loading.attr="disabled" wire:target="sendEnterPresence">Masuk</button>
     <a href="{{ route('home.permission', $attendance->id) }}"
         class="btn btn-info px-3 py-2 btn-sm fw-bold d-block w-100">Izin</a>
@@ -81,17 +81,21 @@
     @endif
 
 </div>
-
 @push('script')
 <script>
+
     // script lokasi
-var lokasi = document.getElementById('lokasi');
+const lokasi = document.getElementById('lokasi');
 if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
 }
 
 function successCallback(position){
-    lokasi.value = position.coords.latitude + "," + position.coords.longitude;
+    document.addEventListener('livewire:load',function ()
+        {
+            @this.lokasi = position.coords.latitude + "," + position.coords.longitude;
+        });
+    //lokasi.value = position.coords.latitude + "," + position.coords.longitude;
     var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 17);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
