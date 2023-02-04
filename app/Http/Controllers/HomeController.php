@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public $data;
+    public $lokasi;
     public function index()
     {
         $attendances = Attendance::query()
@@ -111,10 +112,8 @@ class HomeController extends Controller
                 "presence_date" => now()->toDateString(),
                 "presence_enter_time" => now()->toTimeString(),
                 "presence_out_time" => null,
-                "latitude_masuk" => $checkLocation->lat,
-                "longitude_masuk" => $checkLocation->lon,
-                "latitude_keluar" => null,
-                "longitude_keluar" => null
+                "lokasi_masuk" => $this->lokasi,
+                "lokasi_pulang" => $this->lokasi
             ]);
 
             return response()->json([
@@ -134,7 +133,7 @@ class HomeController extends Controller
     {
         $code = request('code');
         $attendance = Attendance::query()->where('code', $code)->first();
-        $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+
 
         if (!$attendance)
             return response()->json([
@@ -163,8 +162,8 @@ class HomeController extends Controller
         $this->data['is_not_out_yet'] = false;
         // $this->data['is_not_enter_today'] = true;
         $presence->update(['presence_out_time' => now()->toTimeString()]);
-        $presence->update(['latitude_keluar' => $checkLocation->lat]);
-        $presence->update(['longitude_keluar' => $checkLocation->lon]);
+        $presence->update(['lokasi_pulang' => $this->lokasi]);
+
 
         return response()->json([
             "success" => true,

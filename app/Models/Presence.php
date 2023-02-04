@@ -9,8 +9,9 @@ class Presence extends Model
 {
     use HasFactory;
 
+    protected $table = "presences";
     protected $guarded = ['id'];
-    protected $dates = ['presence_date'];
+    // protected $dates = ['presence_date'];
 
     public function user()
     {

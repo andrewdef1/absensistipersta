@@ -138,7 +138,8 @@
                 <td width="5%">{{$no}}.</td>
                 {{-- <td>{{$absen->title}}</td> --}}
                 <td>{{$absen->name}}</td>
-                <td>{{$absen->presence_date->isoFormat('dddd, D MMMM Y') }}</td>
+                {{-- <td>{{$absen->presence_date->isoFormat('dddd, D MMMM Y') }}</td> --}}
+                <td>{{Carbon\Carbon::parse($absen->presence_date)->isoFormat('dddd, D MMMM Y') }}</td>
                 <td>{{$absen->presence_enter_time}}</td>
                 <td>{{$absen->presence_out_time}}</td>
                 <td>{{$absen->lokasi_masuk}}</td>

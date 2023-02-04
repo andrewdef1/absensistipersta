@@ -39,8 +39,9 @@ class PresenceForm extends Component
             $presence->update(['presence_out_time' => now()->toTimeString()]);
             //  "lokasi_masuk" => $checkLocation->lat;
             //  "lokasi_pulang" => $checkLocation->lat;
-            // $presence->update(['latitude_keluar' => $checkLocation->lat]);
-            // $presence->update(['longitude_keluar' => $checkLocation->lon]);
+            $presence->update(['lokasi_pulang' => $this->lokasi]);
+            //  $presence->update(['latitude_keluar' => $checkLocation->lat]);
+            //  $presence->update(['longitude_keluar' => $checkLocation->lon]);
             return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' terlambat melakukan absensi pulang."]);
         }
     }
@@ -79,15 +80,17 @@ class PresenceForm extends Component
 
         if ($this->attendance->data->is_end && !$this->attendance->data->is_using_qrcode)  {
         // if ($this->attendance->data->batas_start_time < $this->attendance->data->end_time && !$this->attendance->data->is_using_qrcode)  {
-            $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
+            // $checkLocation=geoip()->getLocation($_SERVER['REMOTE_ADDR']);
             Presence::create([
                 "user_id" => auth()->user()->id,
                 "attendance_id" => $this->attendance->id,
                 "presence_date" => now()->toDateString(),
                 "presence_enter_time" => now()->toTimeString(),
-                "presence_out_time" => null,
+                // "presence_out_time" => null,
+                "presence_out_time" => now()->toTimeString(),
                 "lokasi_masuk" => $this->lokasi,
-                "lokasi_pulang" => null
+                // "lokasi_pulang" => null
+                "lokasi_pulang" => $this->lokasi
                 // "latitude_masuk" => $checkLocation->lat,
                 // "longitude_masuk" => $checkLocation->lon,
                 // "latitude_keluar" => null,
@@ -96,7 +99,7 @@ class PresenceForm extends Component
 
             // untuk refresh if statement
             $this->data['is_has_enter_today'] = true;
-            $this->data['is_not_out_yet'] = true;
+            $this->data['is_not_out_yet'] = false;
 
             return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' terlambat melakukan absensi masuk."]);
         }
