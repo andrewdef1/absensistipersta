@@ -14,15 +14,15 @@
 
     @livewireStyles
     <!-- Scripts -->
-    {{-- <script src="{{ mix('js/app.js') }}" defer></script>
+    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
+    {{-- <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css"> --}}
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    {{-- <link rel="stylesheet" href="/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    {{-- <img src="{{ URL::asset('/assets/img/kopnew.png') }}" width="100%" height="30%" align="center"> --}}
+    <img src="{{ URL::asset('/img/kopnew.png') }}" width="100%" height="auto" align="center">
 
     <h2 align="center"><strong>LAPORAN ABSEN STIPER SANTO THOMAS AQUINAS JAYAPURA</strong></h2>
     <div class="form-group">
