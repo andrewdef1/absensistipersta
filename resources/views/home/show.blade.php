@@ -1,6 +1,11 @@
 @extends('layouts.home')
 
 @section('content')
+<style>
+    #map { height: 180px;
+    }
+</style>
+
 <div class="container py-5">
     <div class="row">
         <div class="col-md-6 mb-3 mb-md-0">
@@ -27,7 +32,12 @@
                 @include('home.partials.qrcode-presence')
                 @endif
         </div>
+
+
         <div class="col-md-6">
+            <h5 class="mb-3">Lokasi Saat ini</h5>
+            <div id="map"></div>
+            <br>
             <h5 class="mb-3">Histori Pada Bulan ini</h5>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">

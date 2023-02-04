@@ -149,15 +149,13 @@ final class PresenceTable extends PowerGridComponent
                 ->makeInputText('presence_out_time')
                 ->sortable(),
 
-            Column::make('Lat Masuk', 'latitude_masuk')
-                ,
-            Column::make('Lon Masuk', 'longitude_masuk')
+            Column::make('Lokasi Masuk', 'lokasi_masuk')
                 ,
 
-            Column::make('Lat Pulang', 'latitude_keluar')
+
+            Column::make('Lokasi Pulang', 'lokasi_pulang')
                 ,
-            Column::make('Lon Pulang', 'longitude_keluar')
-                ,
+
 
             Column::make('Status', 'is_permission')
                 ->sortable(),

@@ -1,14 +1,10 @@
 
 <div>
     {{-- get lokasi input --}}
-    <input type="text" wire:model="lokasi" id="lokasi" name="lokasi">
+    <input type="hidden" wire:model="lokasi" id="lokasi" name="lokasi">
     {{-- <input type="hidden" id="lokasi" name="lokasi" wire:model="lokasi_pulang"> --}}
-    <div class="row mt-2">
-        <div class="col">
-            <div id="map"></div>
-        </div>
-    </div>
-{{ $lokasi }}
+
+{{-- {{ $lokasi }} --}}
 
 
     @if ($holiday)
