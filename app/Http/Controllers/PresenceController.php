@@ -239,7 +239,7 @@ class PresenceController extends Controller
         $lapabsen = \App\Models\Presence::select('presences.*', 'attendances.title','users.name')
         ->leftJoin('attendances', 'presences.attendance_id', '=', 'attendances.id')
         ->leftJoin('users', 'presences.user_id', '=', 'users.id')
-        ->orderBy('presences.user_id')
+        ->orderBy('presences.user_id','ASC')
          ->whereBetween('presences.presence_date',[$tglawal, $tglakhir])->get();
          return view('laporan.cetaklaporabsen', compact('lapabsen'));
     }
