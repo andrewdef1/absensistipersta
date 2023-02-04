@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2023 at 12:30 PM
+-- Generation Time: Feb 04, 2023 at 05:36 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -35,6 +35,8 @@ CREATE TABLE `attendances` (
   `batas_start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `batas_end_time` time NOT NULL,
+  `tanggal_awal` date DEFAULT NULL,
+  `tanggal_akhir` date DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -44,8 +46,9 @@ CREATE TABLE `attendances` (
 -- Dumping data for table `attendances`
 --
 
-INSERT INTO `attendances` (`id`, `title`, `description`, `start_time`, `batas_start_time`, `end_time`, `batas_end_time`, `code`, `created_at`, `updated_at`) VALUES
-(1, 'Januari 2023', 'Presensi Bulan Januari 2023', '07:00:00', '19:00:00', '20:00:00', '23:30:00', NULL, '2023-01-05 06:41:40', '2023-01-05 11:30:13');
+INSERT INTO `attendances` (`id`, `title`, `description`, `start_time`, `batas_start_time`, `end_time`, `batas_end_time`, `tanggal_awal`, `tanggal_akhir`, `code`, `created_at`, `updated_at`) VALUES
+(3, 'Februari 2023', 'Presensi Februari 2023', '00:00:00', '22:00:00', '23:00:00', '23:59:00', '2023-02-01', '2023-02-28', NULL, '2023-02-01 08:51:19', '2023-02-04 04:06:38'),
+(13, 'Maret 2023', 'Presensi Maret 2023', '07:00:00', '20:00:00', '21:00:00', '23:59:00', '2023-03-01', '2023-03-31', NULL, '2023-02-01 08:51:19', '2023-02-01 09:50:33');
 
 -- --------------------------------------------------------
 
@@ -66,10 +69,14 @@ CREATE TABLE `attendance_position` (
 --
 
 INSERT INTO `attendance_position` (`id`, `attendance_id`, `position_id`, `created_at`, `updated_at`) VALUES
-(5, 1, 3, NULL, NULL),
-(6, 1, 2, NULL, NULL),
-(7, 1, 4, NULL, NULL),
-(8, 1, 1, NULL, NULL);
+(13, 3, 3, NULL, NULL),
+(14, 3, 2, NULL, NULL),
+(15, 3, 4, NULL, NULL),
+(16, 3, 1, NULL, NULL),
+(26, 13, 3, NULL, NULL),
+(27, 13, 2, NULL, NULL),
+(28, 13, 4, NULL, NULL),
+(29, 13, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,6 +108,46 @@ CREATE TABLE `holidays` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `holidays`
+--
+
+INSERT INTO `holidays` (`id`, `title`, `description`, `holiday_date`, `created_at`, `updated_at`) VALUES
+(121, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-01-01', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(122, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-01-07', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(123, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-01-08', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(124, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-01-14', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(125, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-01-15', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(126, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-01-21', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(127, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-01-22', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(128, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-01-28', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(129, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-01-29', '2023-02-01 13:45:51', '2023-02-01 13:45:51'),
+(171, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-02-05', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(172, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-02-11', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(173, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-02-12', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(174, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-02-18', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(175, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-02-19', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(176, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-02-25', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(177, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-02-26', '2023-02-01 13:53:18', '2023-02-01 13:53:18'),
+(186, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-03-04', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(187, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-03-05', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(188, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-03-11', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(189, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-03-12', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(190, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-03-18', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(191, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-03-19', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(192, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-03-25', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(193, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-03-26', '2023-02-01 13:56:46', '2023-02-01 13:56:46'),
+(194, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-04-01', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(195, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-04-02', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(196, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-04-08', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(197, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-04-09', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(198, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-04-15', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(199, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-04-16', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(200, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-04-22', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(201, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-04-23', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(202, 'Libur Hari Sabtu', 'Libur Hari Sabtu', '2023-04-29', '2023-02-01 13:57:34', '2023-02-01 13:57:34'),
+(203, 'Libur Hari Minggu', 'Libur Hari Minggu', '2023-04-30', '2023-02-01 13:57:34', '2023-02-01 13:57:34');
 
 -- --------------------------------------------------------
 
@@ -220,10 +267,8 @@ CREATE TABLE `presences` (
   `presence_date` date NOT NULL,
   `presence_enter_time` varchar(255) DEFAULT NULL,
   `presence_out_time` time DEFAULT NULL,
-  `latitude_masuk` varchar(255) DEFAULT NULL,
-  `longitude_masuk` varchar(255) DEFAULT NULL,
-  `latitude_keluar` varchar(255) DEFAULT NULL,
-  `longitude_keluar` varchar(255) DEFAULT NULL,
+  `lokasi_masuk` varchar(255) DEFAULT NULL,
+  `lokasi_pulang` varchar(255) DEFAULT NULL,
   `is_permission` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -233,8 +278,9 @@ CREATE TABLE `presences` (
 -- Dumping data for table `presences`
 --
 
-INSERT INTO `presences` (`id`, `user_id`, `attendance_id`, `presence_date`, `presence_enter_time`, `presence_out_time`, `latitude_masuk`, `longitude_masuk`, `latitude_keluar`, `longitude_keluar`, `is_permission`, `created_at`, `updated_at`) VALUES
-(38, 2, 1, '2023-01-05', '20:24:32', '20:30:18', '-2.5375', '140.7193', '-2.5375', '140.7193', 0, '2023-01-05 11:24:32', '2023-01-05 11:30:18');
+INSERT INTO `presences` (`id`, `user_id`, `attendance_id`, `presence_date`, `presence_enter_time`, `presence_out_time`, `lokasi_masuk`, `lokasi_pulang`, `is_permission`, `created_at`, `updated_at`) VALUES
+(65, 2, 3, '2023-02-01', '18:51:39', '19:47:20', NULL, NULL, 0, '2023-02-01 09:51:39', '2023-02-01 10:47:20'),
+(84, 2, 3, '2023-02-04', '13:34:48', NULL, '-2.5812804,140.499901', NULL, 0, '2023-02-04 04:34:48', '2023-02-04 04:34:48');
 
 -- --------------------------------------------------------
 
@@ -384,13 +430,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `attendance_position`
 --
 ALTER TABLE `attendance_position`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -402,7 +448,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -414,7 +460,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -432,7 +478,7 @@ ALTER TABLE `positions`
 -- AUTO_INCREMENT for table `presences`
 --
 ALTER TABLE `presences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `roles`
