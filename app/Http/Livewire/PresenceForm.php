@@ -84,7 +84,7 @@ class PresenceForm extends Component
                 "user_id" => auth()->user()->id,
                 "attendance_id" => $this->attendance->id,
                 "presence_date" => now()->toDateString(),
-                "presence_enter_time" => 'Terlambat',
+                "presence_enter_time" => now()->toTimeString(),
                 "presence_out_time" => null,
                 "lokasi_masuk" => $this->lokasi,
                 "lokasi_pulang" => null
