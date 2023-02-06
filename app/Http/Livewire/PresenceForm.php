@@ -60,7 +60,7 @@ class PresenceForm extends Component
                 "presence_enter_time" => now()->toTimeString(),
                 "presence_out_time" => null,
                 "lokasi_masuk" => $this->lokasi,
-                "lokasi_pulang" => null,
+                "lokasi_pulang" => null
                 // "latitude_masuk" => $checkLocation->lat,
                 // "longitude_masuk" => $checkLocation->lon,
                 // "latitude_keluar" => null,
