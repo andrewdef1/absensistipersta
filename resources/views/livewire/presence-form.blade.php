@@ -81,6 +81,7 @@
 
     // script lokasi
 const lokasi = document.getElementById('lokasi');
+const tottest = document.getElementById('tottest');
 if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
 }
@@ -99,12 +100,35 @@ function successCallback(position){
 
 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
 
-var circle = L.circle([position.coords.latitude, position.coords.longitude], {
-    color: 'grey',
-    fillColor: 'cyan',
-    fillOpacity: 0.5,
-    radius: 69
+// var circle = L.circle([position.coords.latitude, position.coords.longitude], {
+// var circle = L.circle([-2.5539973734458052, 140.4894031435617], {
+//     color: 'grey',
+//     fillColor: 'cyan',
+//     fillOpacity: 0.5,
+//     radius: 150
+// }).addTo(map);
+
+marker.bindPopup("Lokasi Saya.").openPopup();
+
+// Define the circle
+const circleCenter = L.latLng(-2.5539973734458052, 140.4894031435617); // Replace with your circle center coordinates
+const circleRadius = 150; // Replace with your circle radius in meters
+const circle = L.circle(circleCenter, {
+  radius: circleRadius,
 }).addTo(map);
+
+// Define the point
+const point = L.latLng(position.coords.latitude, position.coords.longitude); // Replace with your point coordinates
+
+// Check if the point is outside the circle
+const distanceToCenter = point.distanceTo(circleCenter);
+if (distanceToCenter > circleRadius) {
+    swal("PERHATIAN!", "Lokasi Anda Sekarang Masih diluar Radius Kampus!", "error");
+
+} else {
+    swal("PERHATIAN!", "Lokasi Dalam Radius Kampus, Silahkan Lakukan Absensi!", "success");
+}
+
 }
 
 function errorCallback() {
