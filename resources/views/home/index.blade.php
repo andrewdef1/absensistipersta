@@ -15,7 +15,7 @@
                             class="list-group-item d-flex justify-content-between align-items-start py-3">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">{{ $attendance->title }}</div>
-                                <p class="mb-0">{{ $attendance->id }}</p>
+                                <p class="mb-0">{{ $attendance->description }}</p>
                             </div>
                             @include('partials.attendance-badges')
                         </a>
