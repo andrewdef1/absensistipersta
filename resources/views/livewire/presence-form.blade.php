@@ -2,7 +2,6 @@
 <div>
     {{-- get lokasi input --}}
     <input type="hidden" wire:model="lokasi" id="lokasi" name="lokasi">
-    {{-- <input type="hidden" id="lokasi" name="lokasi" wire:model="lokasi_pulang"> --}}
 
 {{-- {{ $lokasi }} --}}
 
