@@ -14,6 +14,7 @@
      <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
     @include('partials.styles')
     @stack('style')
 

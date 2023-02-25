@@ -27,7 +27,13 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    Informasi Karyawan
+
+                    <lord-icon
+                        src="https://cdn.lordicon.com/itmsnfur.json"
+                        trigger="loop"
+                        delay="1"
+                        style="width:70px;height:50px;  padding-top:10px;">
+                    </lord-icon> Informasi Karyawan
                 </div>
                 <div class="card-body">
                     <ul class="ps-3">
