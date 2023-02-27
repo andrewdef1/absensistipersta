@@ -134,7 +134,7 @@
               @endphp
                 @endif
 
-              <tr>
+            <tr>
                 <td width="5%">{{$no}}.</td>
                 {{-- <td>{{$absen->title}}</td> --}}
                 <td>{{$absen->name}}</td>
@@ -148,8 +148,12 @@
                     {{ ($TL + $CP) }}
                 </td>
 
-
               </tr>
+              {{-- <tr>
+                <td colspan="7"><strong>TOTAL PEMOTONGAN</strong></td>
+                <td> {{ ($TL + $CP) }}</td>
+                </td>
+            </tr> --}}
               @endforeach
             </tbody>
             {{-- <tfoot>
