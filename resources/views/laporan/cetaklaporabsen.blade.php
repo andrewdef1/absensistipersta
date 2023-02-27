@@ -62,7 +62,7 @@
                 <th><b>Jam Pulang</b></th>
                 <th><b>Lokasi Masuk</b></th>
                 <th><b>Lokasi Pulang</b></th>
-                <th><b>Total Potongan (M&P)</b></th>
+                <th><b>Total Potongan (M&P) %</b></th>
 
 
 
