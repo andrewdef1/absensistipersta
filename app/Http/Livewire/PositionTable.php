@@ -13,6 +13,7 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class PositionTable extends PowerGridComponent
 {
     use ActionButton;
+    protected $index = 0;
 
     protected function getListeners()
     {
@@ -139,7 +140,8 @@ final class PositionTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            // ->addColumn('id')
+            ->addColumn('no', fn () => ++$this->index)
             ->addColumn('name')
             ->addColumn('created_at')
             ->addColumn('created_at_formatted', fn (Position $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
@@ -162,9 +164,13 @@ final class PositionTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('ID', 'id')
+            //     ->searchable()
+            //     ->sortable(),
+
+            Column::make('No.', 'no'),
+            // ->searchable()
+            // ->sortable(),
 
             Column::make('Name', 'name')
                 ->searchable()
@@ -174,9 +180,9 @@ final class PositionTable extends PowerGridComponent
             Column::make('Created at', 'created_at')
                 ->hidden(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->makeInputDatePicker()
-                ->searchable()
+            // Column::make('Created at', 'created_at_formatted', 'created_at')
+            //     ->makeInputDatePicker()
+            //     ->searchable()
         ];
     }
 

@@ -16,8 +16,9 @@ final class PresenceTable extends PowerGridComponent
 
     public $attendanceId;
     //Table sort field
-    public string $sortField = 'presences.created_at';
-    public string $sortDirection = 'desc';
+    public string $sortField = 'presences.user_id';
+    public string $sortDirection = 'asc';
+    protected $index = 0;
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +92,8 @@ final class PresenceTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            // ->addColumn('id')
+            ->addColumn('no', fn () => ++$this->index)
             ->addColumn('user_name')
             ->addColumn("presence_date")
             ->addColumn("presence_enter_time")
@@ -121,9 +123,13 @@ final class PresenceTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('ID', 'id')
+            //     ->searchable()
+            //     ->sortable(),
+
+            Column::make('No.', 'no'),
+            // ->searchable()
+            // ->sortable(),
 
             Column::make('Nama', 'user_name')
                 ->searchable()
@@ -161,9 +167,9 @@ final class PresenceTable extends PowerGridComponent
             Column::make('Created at', 'created_at')
                 ->hidden(),
 
-            Column::make('Created at', 'created_at_formatted')
-                ->makeInputDatePicker()
-                ->searchable()
+            // Column::make('Created at', 'created_at_formatted')
+            //     ->makeInputDatePicker()
+            //     ->searchable()
         ];
     }
 

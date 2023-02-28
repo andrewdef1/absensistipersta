@@ -15,8 +15,10 @@ final class AttendanceTable extends PowerGridComponent
     use ActionButton;
 
     //Table sort field
-    public string $sortField = 'attendances.created_at';
+    public string $sortField = 'attendances.tanggal_awal';
     public string $sortDirection = 'desc';
+    protected $index = 0;
+
 
     protected function getListeners()
     {
@@ -124,8 +126,11 @@ final class AttendanceTable extends PowerGridComponent
     */
     public function addColumns(): PowerGridEloquent
     {
+
         return PowerGrid::eloquent()
-            ->addColumn('id')
+
+            // ->addColumn('id')
+            ->addColumn('no', fn () => ++$this->index)
             ->addColumn('title')
             ->addColumn('description')
             ->addColumn('start_time', fn (Attendance $model) => substr($model->start_time, 0, -3) . "-" . substr($model->batas_start_time, 0, -3))
@@ -156,16 +161,21 @@ final class AttendanceTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+
+            // Column::make('ID', 'id')
+            //     ->searchable()
+            //     ->sortable(),
+
+            Column::make('No.', 'no'),
+                // ->searchable()
+                // ->sortable(),
 
             Column::make('Nama', 'title')
                 ->searchable()
                 ->makeInputText('title')
                 ->sortable(),
 
-            Column::make('Keterangan', 'description'),
+            // Column::make('Keterangan', 'description'),
 
             Column::make('Waktu Absen Masuk', 'start_time', 'start_time')
                 ->searchable()
@@ -178,13 +188,13 @@ final class AttendanceTable extends PowerGridComponent
                 ->sortable(),
 
                 Column::make('Tanggal Mulai', 'tanggal_awal', 'tanggal_awal')
-                ->searchable()
-                ->makeInputText('tanggal_awal')
+                ->makeInputDatePicker()
+                // ->makeInputText('tanggal_awal')
                 ->sortable(),
 
                 Column::make('Tanggal Berakhir', 'tanggal_akhir', 'tanggal_akhir')
-                ->searchable()
-                ->makeInputText('tanggal_akhir')
+                ->makeInputDatePicker()
+                // ->makeInputText('tanggal_akhir')
                 ->sortable(),
 
             // Column::make('Batas Akhir Absen Masuk', 'batas_start_time', 'batas_start_time')
@@ -205,9 +215,9 @@ final class AttendanceTable extends PowerGridComponent
             Column::make('Created at', 'created_at')
                 ->hidden(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->makeInputDatePicker()
-                ->searchable()
+            // Column::make('Created at', 'created_at_formatted', 'created_at')
+            //     ->makeInputDatePicker()
+            //     ->searchable()
         ];
     }
 

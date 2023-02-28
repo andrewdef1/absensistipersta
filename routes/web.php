@@ -22,6 +22,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::middleware(['throttle:global'])->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin,operator')->group(function () {
@@ -83,3 +84,4 @@ Route::middleware('guest')->group(function () {
 //     return $checkLocation->toArray();
 //     dd($checkLocation);
 // });
+});

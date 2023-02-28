@@ -13,6 +13,9 @@ use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Heade
 final class HolidayTable extends PowerGridComponent
 {
     use ActionButton;
+    public string $sortField = 'holidays.holiday_date';
+    public string $sortDirection = 'desc';
+    protected $index = 0;
 
     protected function getListeners()
     {
@@ -139,7 +142,8 @@ final class HolidayTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            // ->addColumn('id')
+            ->addColumn('no', fn () => ++$this->index)
             ->addColumn('title')
             ->addColumn('description')
             ->addColumn('holiday_date')
@@ -165,9 +169,13 @@ final class HolidayTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('ID', 'id')
+            //     ->searchable()
+            //     ->sortable(),
+
+            Column::make('No.','no'),
+                // ->searchable()
+                //  ->sortable(),
 
             Column::make('Nama Hari Libur', 'title')
                 ->searchable()
@@ -189,9 +197,9 @@ final class HolidayTable extends PowerGridComponent
             Column::make('Created at', 'created_at')
                 ->hidden(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->makeInputDatePicker()
-                ->searchable()
+            // Column::make('Created at', 'created_at_formatted', 'created_at')
+            //     ->makeInputDatePicker()
+            //     ->searchable()
         ];
     }
 

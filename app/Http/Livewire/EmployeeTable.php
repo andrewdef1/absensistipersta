@@ -17,8 +17,9 @@ final class EmployeeTable extends PowerGridComponent
     use ActionButton;
 
     //Table sort field
-    public string $sortField = 'users.created_at';
-    public string $sortDirection = 'desc';
+    public string $sortField = 'users.id';
+    public string $sortDirection = 'asc';
+    protected $index = 0;
 
     protected function getListeners()
     {
@@ -152,7 +153,8 @@ final class EmployeeTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
+            // ->addColumn('id')
+            ->addColumn('no', fn () => ++$this->index)
             ->addColumn('name')
             ->addColumn('email')
             ->addColumn('phone')
@@ -183,9 +185,11 @@ final class EmployeeTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id', 'users.id')
-                ->searchable()
-                ->sortable(),
+            // Column::make('ID', 'id', 'users.id')
+            //     ->searchable()
+            //     ->sortable(),
+
+            Column::make('No.', 'no'),
 
             Column::make('Name', 'name', 'users.name')
                 ->searchable()
