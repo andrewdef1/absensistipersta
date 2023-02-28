@@ -34,7 +34,7 @@ class Attendance extends Model
         return Attribute::make(
             get: function ($value) {
                 $now = now();
-                $now_tgl = now();
+                $now_tgl = date("Y-m-d");
                 $startTime = Carbon::parse($this->start_time);
                 $batasStartTime = Carbon::parse($this->batas_start_time);
 
