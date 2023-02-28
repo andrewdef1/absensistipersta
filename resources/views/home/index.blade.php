@@ -1,6 +1,8 @@
 @extends('layouts.home')
 
 @section('content')
+<div id="clock" align="center"></div>
+<div id="dateclock" align="center"></div>
 <div class="container py-5">
     <div class="row">
         <div class="col-md-8">
@@ -24,6 +26,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-header">
