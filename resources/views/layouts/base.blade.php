@@ -42,7 +42,7 @@
         var minutes = now.getMinutes().toString().padStart(2, '0');
         var seconds = now.getSeconds().toString().padStart(2, '0');
         var timeString =  hours + ':' + minutes + ':' + seconds + ' ' + meridiem;
-        var dateString =  '(' + dayOfWeek + ', ' + dateNumber  + ' ' + monthOfYear + ' ' + year + ')';
+        var dateString =  dayOfWeek + ', ' + dateNumber  + ' ' + monthOfYear + ' ' + year;
         document.getElementById('clock').innerHTML = timeString;
         document.getElementById('dateclock').innerHTML = dateString;
     }
