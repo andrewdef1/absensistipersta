@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\Uuids;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Uuids;
 
-    const ADMIN_ROLE_ID = 1;
-    const OPERATOR_ROLE_ID = 2;
-    const USER_ROLE_ID = 3;
+    const ADMIN_ROLE_ID = '40a3ca0d-a666-461d-a6c9-05a3ce75c82a';
+    const OPERATOR_ROLE_ID = '54308026-8eba-4e87-9636-93585a1be3ec';
+    const USER_ROLE_ID = 'db192096-37dd-47d5-8f28-f948c3c92ba1';
 
     /**
      * The attributes that are mass assignable.

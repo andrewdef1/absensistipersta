@@ -22,11 +22,12 @@ class AttendanceAbstract extends Component
         'attendance.tanggal_akhir' => 'required',
         'attendance.code' => 'sometimes|nullable|boolean',
         'position_ids' => 'required|array',
-        "position_ids.*"  => "required|distinct|numeric",
+        "position_ids.*"  => "required|distinct|string",
     ];
 
     public function mount()
     {
+
         $this->positions = Position::query()->select(['id', 'name'])->get();
     }
 }

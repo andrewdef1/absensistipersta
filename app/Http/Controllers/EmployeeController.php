@@ -26,7 +26,7 @@ class EmployeeController extends Controller
         $ids = request('ids');
         if (!$ids)
             return redirect()->back();
-        $ids = explode('-', $ids);
+        $ids = explode(',', $ids);
 
         // ambil data user yang hanya memiliki User::USER_ROLE_ID / role untuk karyawaan
         $employees = User::query()
