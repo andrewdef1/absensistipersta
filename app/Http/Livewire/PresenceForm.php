@@ -11,6 +11,7 @@ class PresenceForm extends Component
     public Attendance $attendance;
     public $holiday;
     public $lokasi;
+    public $catatan;
     public $data;
 
 
@@ -60,7 +61,9 @@ class PresenceForm extends Component
                 "presence_enter_time" => now()->toTimeString(),
                 "presence_out_time" => null,
                 "lokasi_masuk" => $this->lokasi,
-                "lokasi_pulang" => null
+                "lokasi_pulang" => null,
+                "catatan_masuk" => $this->catatan,
+                // "catatan_pulang" => null
                 // "latitude_masuk" => $checkLocation->lat,
                 // "longitude_masuk" => $checkLocation->lon,
                 // "latitude_keluar" => null,
@@ -90,7 +93,9 @@ class PresenceForm extends Component
                 "presence_out_time" => now()->toTimeString(),
                 "lokasi_masuk" => $this->lokasi,
                 // "lokasi_pulang" => null
-                "lokasi_pulang" => $this->lokasi
+                "lokasi_pulang" => $this->lokasi,
+                "catatan_masuk" => $this->catatan,
+                "catatan_pulang" => $this->catatan
                 // "latitude_masuk" => $checkLocation->lat,
                 // "longitude_masuk" => $checkLocation->lon,
                 // "latitude_keluar" => null,
@@ -145,6 +150,7 @@ class PresenceForm extends Component
         $this->data['is_not_out_yet'] = false;
         $presence->update(['presence_out_time' => now()->toTimeString()]);
         $presence->update(['lokasi_pulang' => $this->lokasi]);
+        $presence->update(['catatan_pulang' => $this->catatan]);
         // $presence->update(['longitude_keluar' => $checkLocation->lon]);
         return $this->dispatchBrowserEvent('showToast', ['success' => true, 'message' => "Atas nama '" . auth()->user()->name . "' berhasil melakukan absensi pulang."]);
     }

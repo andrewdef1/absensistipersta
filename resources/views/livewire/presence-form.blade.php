@@ -18,6 +18,8 @@
         @if ($attendance->data->is_end && !$data['is_has_enter_today'] && $attendance->data->in_date_range)
         <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendLateEnterPresence"
             wire:loading.attr="disabled" wire:target="sendLateEnterPresence">Absen Masuk & Pulang Sekaligus (Hanya yang lupa absen masuk!!!)</button>
+            <br>
+            <textarea placeholder="CATATAN (opsional)" id="catatan" name="catatan" class="px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:model="catatan"></textarea>
         @endif
 <br>
 
@@ -29,6 +31,8 @@
     @if ($attendance->data->is_start && !$data['is_has_enter_today'] && $attendance->data->in_date_range)
     <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:click="sendEnterPresence"
         wire:loading.attr="disabled" wire:target="sendEnterPresence">Masuk</button>
+        <textarea placeholder="CATATAN (opsional)" id="catatan" name="catatan" class="px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:model="catatan"></textarea>
+        <br>
     <a href="{{ route('home.permission', $attendance->id) }}"
         class="btn btn-info px-3 py-2 btn-sm fw-bold d-block w-100">Izin</a>
     @endif
@@ -43,6 +47,8 @@
     @if ($attendance->data->is_end && $data['is_has_enter_today'] && $data['is_not_out_yet'] && $attendance->data->in_date_range)
     <button class="btn btn-primary px-3 py-2 btn-sm fw-bold d-block w-100" wire:click="sendOutPresence"
         wire:loading.attr="disabled" wire:target="sendOutPresence">Pulang</button>
+        <br>
+    <textarea placeholder="CATATAN (opsional)" id="catatan" name="catatan" class="px-3 py-2 btn-sm fw-bold d-block w-100 mb-2" wire:model="catatan"></textarea>
     @endif
 
     {{-- sudah absen masuk dan absen pulang --}}

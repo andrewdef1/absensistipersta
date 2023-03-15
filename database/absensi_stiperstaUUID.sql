@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2023 at 05:22 PM
+-- Generation Time: Mar 15, 2023 at 11:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -47,7 +47,7 @@ CREATE TABLE `attendances` (
 --
 
 INSERT INTO `attendances` (`id`, `title`, `description`, `start_time`, `batas_start_time`, `end_time`, `batas_end_time`, `tanggal_awal`, `tanggal_akhir`, `code`, `created_at`, `updated_at`) VALUES
-('87df5d32-2e9f-418a-accf-bd727faa0121', 'Maret 2023', 'Maret 2023', '00:00:00', '21:59:00', '22:00:00', '23:59:00', '2023-03-01', '2023-03-31', NULL, '2023-03-05 13:13:57', '2023-03-11 16:10:49'),
+('87df5d32-2e9f-418a-accf-bd727faa0121', 'Maret 2023', 'Presensi Maret 2023', '00:00:00', '14:00:00', '15:00:00', '23:59:00', '2023-03-01', '2023-03-31', NULL, '2023-03-05 13:13:57', '2023-03-15 10:48:15'),
 ('9fdf9c60-638d-495a-a8ef-78c6bcebfc96', 'April 2023', 'Presensi April 2023', '07:00:00', '11:00:00', '15:00:00', '18:00:00', '2023-04-01', '2023-04-30', NULL, '2023-03-11 16:12:21', '2023-03-11 16:12:21');
 
 -- --------------------------------------------------------
@@ -247,6 +247,8 @@ CREATE TABLE `presences` (
   `is_permission` tinyint(1) NOT NULL DEFAULT 0,
   `lokasi_masuk` varchar(255) DEFAULT 'unidentified',
   `lokasi_pulang` varchar(255) DEFAULT 'unidentified',
+  `catatan_masuk` varchar(255) DEFAULT '-',
+  `catatan_pulang` varchar(255) DEFAULT '-',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -26,6 +26,8 @@ class Attendance extends Model
         'batas_end_time',
         'tanggal_awal',
         'tanggal_akhir',
+        'catatan_masuk',
+        'catatan_pulang',
          'code'
     ];
 
