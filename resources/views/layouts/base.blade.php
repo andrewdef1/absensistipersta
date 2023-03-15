@@ -21,6 +21,22 @@
         font-size:24px;
         font-family: 'Tilt Neon', sans-serif;
     }
+textarea::-webkit-input-placeholder {
+    color: #414141;
+    font-weight: bold;
+}
+textarea::-moz-placeholder {
+    color: #414141;
+    font-weight: bold;
+}
+textarea::-ms-input-placeholder {
+    color: #414141;
+    font-weight: bold;
+}
+textarea::-o-input-placeholder {
+    color: #414141;
+    font-weight: bold;
+}
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
