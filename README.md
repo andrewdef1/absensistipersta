@@ -18,5 +18,5 @@ import file DB yang ada didalam folder database ke phpmyadmin atau database pend
 
 php artisan serve
 
-# lalu buka browser dengan url: http://localhost:8000/
+# lalu buka browser dengan url: http://localhost:8000/ and u rdy to go !
 ```
