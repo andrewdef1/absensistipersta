@@ -14,10 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attendance_position', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('position_id')->constrained();
+            $table->uuid('id')->primary();
+            $table->uuid('attendance_id')->constrained()->cascadeOnDelete();
+            $table->uuid('position_id')->constrained();
+            // $table->foreign('attendance_id')->constrained()->cascadeOnDelete();
+            // $table->foreign('position_id')->constrained();
             $table->timestamps();
+
+            $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreign('position_id')->references('id')->on('positions');
         });
     }
 

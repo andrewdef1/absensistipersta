@@ -57,12 +57,14 @@
                 <th><b>No.</b></th>
                 {{-- <th><b>Title Absen</b></th> --}}
                 <th><b>Nama</b></th>
-                <th><b>Tanggal Absen</b></th>
+                <th><b>Tgl Absen</b></th>
                 <th><b>Jam Masuk</b></th>
                 <th><b>Jam Pulang</b></th>
-                <th><b>Lokasi Masuk</b></th>
-                <th><b>Lokasi Pulang</b></th>
-                <th><b>Total Potongan (M&P) %</b></th>
+                <th><b>Lok. Masuk</b></th>
+                <th><b>Lok. Pulang</b></th>
+                <th><b>Ctt Masuk</b></th>
+                <th><b>Ctt Pulang</b></th>
+                <th><b>Jml. Potongan (M&P) %</b></th>
 
 
 
@@ -144,6 +146,19 @@
                 <td>{{$absen->presence_out_time}}</td>
                 <td>{{$absen->lokasi_masuk}}</td>
                 <td>{{$absen->lokasi_pulang}}</td>
+                <td>
+                    @if ($absen->catatan_masuk === null)
+                    {{ '-' }}
+                    @else
+                    {{$absen->catatan_masuk}}
+                    @endif
+                </td>
+                <td> @if ($absen->catatan_pulang === null)
+                    {{ '-' }}
+                    @else
+                    {{$absen->catatan_pulang}}
+                    @endif
+                </td>
                 <td>
                     {{ ($TL + $CP) }}
                 </td>

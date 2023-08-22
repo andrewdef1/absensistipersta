@@ -14,12 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
+            $table->uuid('id')->primary();
+            $table->uuid('user_id')->constrained();
+            // $table->foreign('user_id')->constrained();
+            $table->uuid('attendance_id')->constrained()->cascadeOnDelete();
+            // $table->foreign('attendance_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('description', 500);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('attendance_id')->references('id')->on('attendances');
         });
     }
 

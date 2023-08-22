@@ -29,7 +29,7 @@ class HolidayController extends Controller
         $ids = request('ids');
         if (!$ids)
             return redirect()->back();
-        $ids = explode('-', $ids);
+        $ids = explode(',', $ids);
 
         $holidays = Holiday::query()
             ->whereIn('id', $ids)

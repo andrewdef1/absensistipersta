@@ -20,18 +20,18 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionSeeder::class);
 
         \App\Models\User::factory()->create([
-            'name' => 'Muhammad Pauzi (Admin)',
-            'email' => 'admin@gmail.com',
+            'name' => 'Drew (Admin)',
+            'email' => 'andrewdefretes@gmail.com',
             'role_id' => Role::where('name', 'admin')->first('id'),
             'position_id' => Position::where('name', 'Operator')->first('id'),
         ]);
-        \App\Models\User::factory(1)->create([
-            'role_id' => Role::where('name', 'operator')->first('id'),
-            'position_id' => Position::where('name', 'Operator')->first('id'),
-        ]);
-        \App\Models\User::factory(10)->create([
-            'role_id' => Role::where('name', 'user')->first('id'), // user === employee
-            'position_id' => Position::select('id')->inRandomOrder()->first()->id
-        ]);
+        // \App\Models\User::factory(1)->create([
+        //     'role_id' => Role::where('name', 'operator')->first('id'),
+        //     'position_id' => Position::where('name', 'Operator')->first('id'),
+        // ]);
+        // \App\Models\User::factory(10)->create([
+        //     'role_id' => Role::where('name', 'user')->first('id'), // user === employee
+        //     'position_id' => Position::select('id')->inRandomOrder()->first()->id
+        // ]);
     }
 }

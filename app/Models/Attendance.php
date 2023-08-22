@@ -7,13 +7,15 @@ use DateTime;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\URL;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Traits\Uuids;
 
 class Attendance extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
 
     protected $fillable = [
         'title',
@@ -24,6 +26,8 @@ class Attendance extends Model
         'batas_end_time',
         'tanggal_awal',
         'tanggal_akhir',
+        'catatan_masuk',
+        'catatan_pulang',
          'code'
     ];
 
@@ -76,8 +80,11 @@ class Attendance extends Model
 
     public function positions()
     {
-        return $this->belongsToMany(Position::class);
-    }
+    return $this->belongsToMany(Position::class)
+    ->using(new class () extends Pivot {
+        use Uuids;
+    });
+}
 
     public function presences()
     {

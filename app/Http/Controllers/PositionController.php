@@ -29,7 +29,7 @@ class PositionController extends Controller
         $ids = request('ids');
         if (!$ids)
             return redirect()->back();
-        $ids = explode('-', $ids);
+        $ids = explode(',', $ids);
 
         $positions = Position::query()->whereIn('id', $ids)->get();
 

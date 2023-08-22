@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->after('password', function (Blueprint $table) {
                 $table->string('phone')->unique()->nullable();
-                $table->foreignId('position_id')->constrained();
+                $table->uuid('position_id')->constrained();
+
+                $table->foreign('position_id')->references('id')->on('positions');
             });
         });
     }
